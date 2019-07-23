@@ -3,8 +3,6 @@ language: go
 go:
   - 1.12.x
 
-go_import_path: github.com/appsody/appsody
-
 os:
   - linux
 
