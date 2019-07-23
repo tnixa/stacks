@@ -37,7 +37,7 @@ get-cli: ## get cli code from repo
 	go env GOPATH
 	mkdir -p /home/travis/gopath/src/github.com/appsody
 	cd /home/travis/gopath/src/github.com/appsody && git clone https://github.com/tnixa/appsody.git
-	git branch -v
+	cd /home/travis/gopath/src/github.com/appsody/appsody && git checkout testsandbox
 	cd /home/travis/gopath/src/github.com/appsody/appsody && make install-controller
 	cd /home/travis/gopath/src/github.com/appsody/appsody/functest && go test
 
