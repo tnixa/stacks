@@ -34,12 +34,26 @@ all: lint test package ## Run lint, test, build, and package
 get-cli: ## get cli code from repo
 	#wget https://github.com/appsody/appsody/archive/0.2.5.zip
 	#unzip 0.2.5.zip
+
+	# this way was working as of 7/24/19...
+	# go env GOPATH
+	# mkdir -p /home/travis/gopath/src/github.com/appsody
+	# cd /home/travis/gopath/src/github.com/appsody && git clone https://github.com/tnixa/appsody.git
+	# cd /home/travis/gopath/src/github.com/appsody/appsody && git checkout testsandbox
+	# cd /home/travis/gopath/src/github.com/appsody/appsody && make install-controller
+	# cd /home/travis/gopath/src/github.com/appsody/appsody/functest && go test
+
+	# try new way with vendor path...
+	export APPSODY_STACKS=incubator/nodejs-express,incubator/java-microprofile
 	go env GOPATH
-	mkdir -p /home/travis/gopath/src/github.com/appsody
-	cd /home/travis/gopath/src/github.com/appsody && git clone https://github.com/tnixa/appsody.git
-	cd /home/travis/gopath/src/github.com/appsody/appsody && git checkout testsandbox
-	cd /home/travis/gopath/src/github.com/appsody/appsody && make install-controller
-	cd /home/travis/gopath/src/github.com/appsody/appsody/functest && go test
+	mkdir -p vendor/github.com/appsody
+	cd vendor/github.com/appsody && git clone https://github.com/tnixa/appsody.git
+	cd vendor/github.com/appsody/appsody && git checkout testsandbox
+	cd vendor/github.com/appsody/appsody && make install-controller
+	#unzip 0.2.5.zip -d vendor/github.com/appsody
+	#mv vendor/github.com/appsody/appsody-0.2.5 vendor/github.com/appsody/appsody
+	cd vendor/github.com/appsody/appsody/functest && go test -v -count=1 -p=1 -run Test
+	#go test -v -count=1 -p=1 ./vendor/github.com/appsody/appsody/functest -run TestParser
 
 	
 .PHONY: test
