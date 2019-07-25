@@ -2,6 +2,7 @@
 
 #### Constant variables
 # use -count=1 to disable cache and -p=1 to stream output live
+EXPORTVAR := export APPSODY_STACKS=incubator/nodejs-express,incubator/java-microprofile
 GO_TEST_COMMAND := go test -v -count=1 -p=1
 # Set a default VERSION only if it is not already set
 VERSION ?= 0.0.0
@@ -44,7 +45,7 @@ get-cli: ## get cli code from repo
 	# cd /home/travis/gopath/src/github.com/appsody/appsody/functest && go test
 
 	# try new way with vendor path...
-	export APPSODY_STACKS=incubator/nodejs-express,incubator/java-microprofile
+	
 	go env GOPATH
 	mkdir -p vendor/github.com/appsody
 	cd vendor/github.com/appsody && git clone https://github.com/tnixa/appsody.git
@@ -52,7 +53,7 @@ get-cli: ## get cli code from repo
 	cd vendor/github.com/appsody/appsody && make install-controller
 	#unzip 0.2.5.zip -d vendor/github.com/appsody
 	#mv vendor/github.com/appsody/appsody-0.2.5 vendor/github.com/appsody/appsody
-	cd vendor/github.com/appsody/appsody/functest && go test -v -count=1 -p=1 -run Test
+	$(EXPORTVAR) && cd vendor/github.com/appsody/appsody/functest && go test -v -count=1 -p=1 -run Test
 	#go test -v -count=1 -p=1 ./vendor/github.com/appsody/appsody/functest -run TestParser
 
 	
