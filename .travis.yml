@@ -33,6 +33,10 @@ jobs:
       name: Parser Test on Linux
       os: linux
       script: make parser-test
+    - <<: *test-template
+      name: Simple Run Test on Linux
+      os: linux
+      script: make run_simple-test    
     # - name: Deploy Release
     #   stage: deploy
     #   os: linux
