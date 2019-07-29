@@ -14,7 +14,6 @@ install: skip
 script: skip
 
 stages:
-  - name: setup
   - name: test
   - name: deploy
     if: tag IS present
@@ -25,13 +24,11 @@ get-cli: &get-cli
 
 test-template: &test-template
   stage: test
+  <<: *get-cli
+  script: make test
 
 jobs:
   include:
-    - <<: *get-cli
-      name: Get the CLI and Test on Linux
-      stage: setup
-      os: linux
     - <<: *test-template
       name: Parser Test on Linux
       os: linux
