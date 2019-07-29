@@ -61,7 +61,7 @@ test: ## Run the all the automated tests
 	$(GO_TEST_COMMAND) ./...  #pass in parameter for which stack to test
 	
 .PHONY: parser-test
-test: ## Run the all the automated tests
+parser-test: ## Run the all the automated tests
 	#$(GO_TEST_COMMAND) ./...  #pass in parameter for which stack to test
 	$(EXPORTVAR) && cd vendor/github.com/appsody/appsody/functest && $(GO_TEST_COMMAND) -run TestParser
 
