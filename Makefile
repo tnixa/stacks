@@ -53,7 +53,7 @@ get-cli: ## get cli code from repo
 	cd vendor/github.com/appsody/appsody && make install-controller
 	#unzip 0.2.5.zip -d vendor/github.com/appsody
 	#mv vendor/github.com/appsody/appsody-0.2.5 vendor/github.com/appsody/appsody
-	$(EXPORTVAR) && cd vendor/github.com/appsody/appsody/functest && go test -v -count=1 -p=1 -run Test
+	$(EXPORTVAR) && cd vendor/github.com/appsody/appsody/functest && go test -v -count=1 -p=1 -run TestParser
 	#go test -v -count=1 -p=1 ./vendor/github.com/appsody/appsody/functest -run TestParser
 
 	
