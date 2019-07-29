@@ -31,6 +31,10 @@ jobs:
       name: Get the CLI and Test on Linux
       stage: test
       os: linux
+    - <<: *test-template
+      name: Parser Test on Linux
+      os: linux
+      script: make parser-test
     # - name: Deploy Release
     #   stage: deploy
     #   os: linux
