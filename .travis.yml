@@ -18,18 +18,18 @@ stages:
   - name: deploy
     if: tag IS present
 
-setup-script: &setup-script
-  install: 
-    - ./ci/build.sh .
+# build-script: &build-script
+#   install: 
+#     - ./ci/build.sh .
 
 get-cli: &get-cli
   install:
       - make get-cli
+      - ./ci/build.sh .
 
 test-template: &test-template
   stage: test
   <<: *get-cli
-  <<: *setup-script
   script: make test
 
 # note before_deploy will run before each deploy provider

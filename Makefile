@@ -64,12 +64,14 @@ test: ## Run the all the automated tests
 .PHONY: parser-test
 parser-test: ## Run the all the automated tests
 	#$(GO_TEST_COMMAND) ./...  #pass in parameter for which stack to test
-	$(EXPORTVAR) && cd vendor/github.com/appsody/appsody/functest && $(GO_TEST_COMMAND) -run TestParser
+	#$(EXPORTVAR) && cd vendor/github.com/appsody/appsody/functest && $(GO_TEST_COMMAND) -run TestParser
+	cd vendor/github.com/appsody/appsody/functest && $(GO_TEST_COMMAND) -run TestParser
 
 .PHONY: run_simple-test
 run_simple-test: ## Run the all the automated tests
 	#$(GO_TEST_COMMAND) ./...  #pass in parameter for which stack to test
-	$(EXPORTVAR) && cd vendor/github.com/appsody/appsody/functest && $(GO_TEST_COMMAND) -timeout 12h -run TestRunSimple
+	#$(EXPORTVAR) && cd vendor/github.com/appsody/appsody/functest && $(GO_TEST_COMMAND) -timeout 12h -run TestRunSimple
+	cd vendor/github.com/appsody/appsody/functest && $(GO_TEST_COMMAND) -timeout 12h -run TestRunSimple
 
 .PHONY: unittest
 unittest: ## Run the automated unit tests
