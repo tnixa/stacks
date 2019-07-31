@@ -25,7 +25,7 @@ stages:
 get-cli: &get-cli
   install:
       - make get-cli
-      - ./ci/build.sh .
+      - ./ci/list.sh .
 
 test-template: &test-template
   stage: test
