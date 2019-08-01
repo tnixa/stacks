@@ -29,8 +29,8 @@ get-cli: &get-cli
       - echo $STACKS_LIST
       - cd vendor/github.com/appsody/appsody/functest
       - pwd
-      - export APPSODY_STACKS=incubator/terrence
-      - echo $APPSODY_STACKS
+      - export NIXA=incubator/terrence
+      - echo $NIXA
       - echo $STACKS_LIST
       - go test -v -count=1 -p=1 -run TestParser
 
