@@ -29,7 +29,7 @@ get-cli: &get-cli
       - echo $STACKS_LIST
       - cd vendor/github.com/appsody/appsody/functest
       - pwd
-      - export NIXA=incubator/terrence
+      # - export NIXA=incubator/terrence
       - echo $NIXA
       - echo $STACKS_LIST
       - export NIXA=$STACKS_LIST
