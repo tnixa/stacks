@@ -25,7 +25,7 @@ stages:
 get-cli: &get-cli
   install:
       - make get-cli
-      - . ./ci/list.sh ../
+      - . ./ci/list.sh .
       - echo $STACKS_LIST
 
 test-template: &test-template
