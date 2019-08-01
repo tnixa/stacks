@@ -26,15 +26,9 @@ get-cli: &get-cli
   install:
       - make get-cli
       - source ci/list.sh .
-      - echo $STACKS_LIST
       - cd vendor/github.com/appsody/appsody/functest
-      - pwd
-      - export NIXA=incubator/terrence
-      - echo $NIXA
-      - echo $STACKS_LIST
-      - export NIXA=$STACKS_LIST
-      - echo $NIXA
-      #- env STACKS_LIST=$STACKS_LIST
+      - export STACKS-LIST=$STACKS_LIST
+      - echo $STACKS-LIST
       - go test -v -count=1 -p=1 -run TestParser
 
 test-template: &test-template
