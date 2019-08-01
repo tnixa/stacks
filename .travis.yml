@@ -25,7 +25,7 @@ stages:
 get-cli: &get-cli
   install:
       - make get-cli
-      - . ./ci/list.sh .
+      - source ci/list.sh .
       - echo $STACKS_LIST
       - cd vendor/github.com/appsody/appsody/functest
       - pwd
