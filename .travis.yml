@@ -32,8 +32,8 @@ get-cli: &get-cli
       # - export NIXA=incubator/terrence
       # - echo $NIXA
       - echo $STACKS_LIST
-      - export NIXA-TEST=$STACKS_LIST
-      - echo $NIXA-TEST
+      - export STACKSLIST=$STACKS_LIST
+      - echo $STACKSLIST
       #- env STACKS_LIST=$STACKS_LIST
       - go test -v -count=1 -p=1 -run TestParser
 
