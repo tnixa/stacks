@@ -24,10 +24,10 @@ public class ConnectionConfiguration {
     private static String contract = "";
 
     // smart contract asset names:
-    private static String getMethod = "readMyAsset";
-    private static String putMethod = "updateMyAsset";
-    private static String deleteMethod = "deleteMyAsset";
-    private static String postMethod = "createMyAsset"; 
+    private static String getMethod = "readTnixaAsset";
+    private static String putMethod = "updateTnixaAsset";
+    private static String deleteMethod = "deleteTnixaAsset";
+    private static String postMethod = "createTnixaAsset"; 
 
     // local env file needs to contain: 
     // CHANNEL
