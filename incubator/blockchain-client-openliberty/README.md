@@ -1,3 +1,65 @@
+# Blockchain Client Open Liberty Stack
+
+## Prerequisites
+1. VS Code Blockchain Extension installed with a local network and a sample contract configured and instantiated
+    1. https://developer.ibm.com/tutorials/ibm-blockchain-platform-vscode-smart-contract/
+1. Appsody commandline installed
+    1. https://appsody.dev/docs/installing/installing-appsody
+
+## Getting Started
+1. Launch the VS Code Blockchain Extension and start the local network and instantiate a contract
+1. Export the connection profile: right-click Fabric Gateways -> 'export connection profile' and save it on your local machine
+1. Export the wallet: Fabric Wallets -> right-click Org1 Wallet -> 'export wallet' and save it on your local machine
+1. Create the env file: create a file called `blockchain.env` on your local system. We will create the following environment variables in this file:
+    1. CONNECTION_PROFILE
+        1. This will be the exported connection profile but we need to substitute the ca and peer urls
+        1. ca:
+            1. `docker ps` and locate the container id of the ca container
+            1. `docker inspect <ca container id>` and locate the IP address, e.g. `172.18.0.6`
+            1. modify the connection profile and replace the ca url with the new IP address, e.g. `http://172.18.0.6:17050`
+        1. peer:
+            1. `docker ps` and locate the container id of the peer container
+            1. `docker inspect <peer container id>` and locate the IP address, e.g. `172.18.0.4`
+            1. modify the connection profile and replace the peer url with the new IP address, e.g. `grpc://172.18.0.4:17051`
+        1. Compress the modified connection profile into a single line using an online tool, e.g. https://codebeautify.org/jsonminifier
+        1. Set the environment variable in the env file, e.g. `CONNECTION_PROFILE=<compressed modified connection profile>`
+    1. CERTIFICATE
+        1. From the exported wallet, open the file: `wallet/admin.json`
+        1. Copy the `cert` string excluding the double quotes
+        1. Set the environment variable in the env file, e.g. `CERTIFICATE=<cert string>`
+    1. PRIVATE_KEY
+        1. From the exported wallet, open the file: `wallet/admin.json`
+        1. Copy the `private_key` string excluding the double quotes
+        1. Set the environment variable in the env file, e.g. `PRIVATE_KEY=<private key string>`
+    1. MSPID
+        1. From the exported wallet, open the file: `wallet/admin.json`
+        1. Copy the `msp_id` string excluding the double quotes, e.g. `Org1MSP`
+        1. Set the environment variable in the file, e.g. `MSPID=<msp_id>`
+    1. IDENTITY
+        1. From the exported wallet, open the file: `wallet/admin.json`
+        1. Copy the `name` string excluding the double quotes, e.g. `admin`
+        1. Set the environment variable in the file, e.g. `IDENTITY=<name>`
+    1. CHANNEL
+        1. Name of the channel, e.g. `mychannel`
+        1. Set the environment variable in the file, e.g. `CHANNEL=<channel name>`
+    1. CONTRACT
+        1. Name of the contract, e.g. `demoContract`
+        1. Set the environment variable in the file, e.g. `CONTRACT=<contract name>`
+1. Package the stack
+    1. `cd incubator/blockchain-client-openliberty`
+    1. `appsody stack package`
+        1. This will package the stack and add the stack to your local `dev.local` repo, e.g. `dev.local/blockchain-client-openliberty`
+1. Initialize the stack
+    1. Create a project directory, e.g. `mkdir blockchain`
+    1. Navigate to the project directory, e.g. `cd blockchain`
+    1. Initialize the stack, e.g. `appsody init dev.local/blockchain-client-openliberty` 
+1. Run the stack
+    1. Find the network name of the local fabric: `docker network ls`, e.g. `1OrgLocalFabric_network`
+    1. Find the location of your `blockchain.env` file, e.g. `/Users/tnixa/blockchain/blockchain.env`
+    1. Run the stack, e.g. `appsody run --network <network name> --docker-options "--env-file=<path to env file>"`
+    
+
+
 # Open Liberty Stack
 
 The Open Liberty stack provides a consistent way of developing microservices based upon the [Jakarta EE](https://jakarta.ee/) and [Eclipse MicroProfile](https://microprofile.io) specifications. This stack lets you use [Maven](https://maven.apache.org) to develop applications for [Open Liberty](https://openliberty.io) runtime, that is running on OpenJDK with container-optimizations in OpenJ9.
